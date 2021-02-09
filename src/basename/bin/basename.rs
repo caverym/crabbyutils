@@ -2,7 +2,7 @@ use std::env;
 
 fn version() {
     print!(
-        "           basename in Rust  Copyright (C) 2021  Avery Murray
+        "           basename 0.1 in Rust  Copyright (C) 2021  Avery Murray
         This program comes with ABSOLUTELY NO WARRANTY.
         This is free software, and you are welcome to redistribute it
         under certain conditions.

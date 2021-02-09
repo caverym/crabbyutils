@@ -2,26 +2,26 @@ use std::env;
 
 fn version() {
     print!(
-        "           basename 0.1 in Rust  Copyright (C) 2021  Avery Murray
-        This program comes with ABSOLUTELY NO WARRANTY.
-        This is free software, and you are welcome to redistribute it
-        under certain conditions.
-        \n"
+        "   basename 0.1 in Rust  Copyright (C) 2021  Avery Murray
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions.
+\n"
     )
 }
 
 fn help() {
     print!(
         "Usage: basename NAME [SUFFIX]
-            or: basename OPTION... NAME...
-        Print NAME with leading directory removed
-        If specified, also remove SUFFIX.
+or: basename OPTION... NAME...
+Print NAME with leading directory removed
+If specified, also remove SUFFIX.\n
         
-            -a, --multiple      support multiple directory as NAME
-            -s, --suffix        remove following string as SUFFIX; implies -a
-            --help              display this help message
-            --version           display version information
-            \n"
+    -a, --multiple      support multiple directory as NAME
+    -s, --suffix        remove following string as SUFFIX; implies -a
+    --help              display this help message
+    --version           display version information
+\n"
     );
     version();
 }

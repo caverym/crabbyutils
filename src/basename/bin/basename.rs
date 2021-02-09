@@ -26,19 +26,6 @@ If specified, also remove SUFFIX.\n
     version();
 }
 
-fn suffix(args: Vec<String>) {
-    let _suf = args[2].as_str();
-    let length = args.len();
-
-    for i in 3..length {
-        let _str = args[i].split('/').last().unwrap().strip_suffix(_suf).unwrap();
-
-        print!("{} ", _str);
-    }
-
-    print!("\n");
-}
-
 fn multiple(args: Vec<String>) {
     let length = args.len();
 
@@ -48,14 +35,34 @@ fn multiple(args: Vec<String>) {
     print!("\n");
 }
 
-fn parse_args(args: Vec<String>) {
+fn suffix(args: Vec<String>) {
+    let _suf = args[2].as_str();
+    let length = args.len();
 
+    for i in 3..length {
+        let mut _str = args[i].as_str();
+        _str = _str.split('/').last().unwrap();
+        _str = _str.strip_suffix(_suf).unwrap();
+        print!("{} ", _str);
+    }
+
+    print!("\n");
+}
+
+fn suffix_basic(args: Vec<String>) {
+    let _suf = args[2].as_str();
+    let _str = args[1].split('/').last().unwrap().strip_suffix(_suf).unwrap();
+
+    println!("{}", _str);
+}
+
+fn parse_args(args: Vec<String>) {
     match args[1].as_str() {
         "-a" => {
             multiple(args);
         }
 
-        "--multiple" => {
+        "--multple" => {
             multiple(args);
         }
 
@@ -67,24 +74,18 @@ fn parse_args(args: Vec<String>) {
             suffix(args);
         }
 
-        "--help" => {
-            help();
-        }
-
         "--version" => {
             version();
         }
 
-        _ => {
-            match args.len() {
-                3 => {
-                    suffix(args);
-                }
-                _ => {
-                    println!("{}", args[1].split('/').last().unwrap());
-                }
-            }
+        "--help" => {
+            help();
         }
+
+        _ => {
+            suffix_basic(args);
+        }
+
     }
 }
 
@@ -93,9 +94,27 @@ fn main() {
 
     match args.len() {
         1 => {
-            help();
+            println!("basneme: missing argument\nTry 'basename --help' for more information");
         }
-        _ => parse_args(args)
+
+        2 => {
+            match args[1].as_str() {
+                "--help" => {
+                    help();
+                }
+
+                "--version" => {
+                    version();
+                }
+
+                _ => {
+                    println!("{}", args[1].split('/').last().unwrap());
+                }
+            }
+        }
+
+        _ => {
+            parse_args(args);
+        }
     }
-    return;
 }

@@ -5,9 +5,8 @@ fn version() {
         "   basename 0.1 in Rust  Copyright (C) 2021  Avery Murray
 This program comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it
-under certain conditions.
-\n"
-    )
+under certain conditions.\n"
+    );
 }
 
 fn help() {
@@ -20,9 +19,9 @@ If specified, also remove SUFFIX.\n
     -a, --multiple      support multiple directory as NAME
     -s, --suffix        remove following string as SUFFIX; implies -a
     --help              display this help message
-    --version           display version information
-\n"
+    --version           display version information\n"
     );
+    print!("\n");
     version();
 }
 
@@ -56,13 +55,25 @@ fn suffix_basic(args: Vec<String>) {
     println!("{}", _str);
 }
 
+fn if_arg(the_arg: String) -> i8 {
+    let chr: Vec<char> = the_arg.chars().collect();
+
+    if chr[0] == '-' {
+        print!("basename: invalid option -- '{}'
+Try 'basename --help' for more information\n", chr[1]);
+        return 1;
+    }
+
+    return 0;
+}
+
 fn parse_args(args: Vec<String>) {
     match args[1].as_str() {
         "-a" => {
             multiple(args);
         }
 
-        "--multple" => {
+        "--multiple" => {
             multiple(args);
         }
 
@@ -83,6 +94,9 @@ fn parse_args(args: Vec<String>) {
         }
 
         _ => {
+            if if_arg(args[1].to_string()) == 1 {
+                return;
+            }
             suffix_basic(args);
         }
 
@@ -94,7 +108,8 @@ fn main() {
 
     match args.len() {
         1 => {
-            println!("basneme: missing argument\nTry 'basename --help' for more information");
+            println!("basneme: missing argument
+Try 'basename --help' for more information");
         }
 
         2 => {
@@ -108,6 +123,9 @@ fn main() {
                 }
 
                 _ => {
+                    if if_arg(args[1].to_string()) == 1 {
+                        return;
+                    }
                     println!("{}", args[1].split('/').last().unwrap());
                 }
             }

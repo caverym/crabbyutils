@@ -29,9 +29,8 @@ fn multiple(args: Vec<String>) {
     let length = args.len();
 
     for i in 2..length {
-        print!("{} ", args[i].split('/').last().unwrap());
+        print!("{}\n", args[i].split('/').last().unwrap());
     }
-    print!("\n");
 }
 
 fn suffix(args: Vec<String>) {
@@ -42,10 +41,8 @@ fn suffix(args: Vec<String>) {
         let mut _str = args[i].as_str();
         _str = _str.split('/').last().unwrap();
         _str = _str.strip_suffix(_suf).unwrap();
-        print!("{} ", _str);
+        print!("{}\n", _str);
     }
-
-    print!("\n");
 }
 
 fn suffix_basic(args: Vec<String>) {

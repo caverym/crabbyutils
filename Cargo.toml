@@ -7,8 +7,13 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+base64 = "0.13.0"
 clap = "2.33.3"
 
 [[bin]]
 name = "basename"
 path = "src/basename/bin/basename.rs"
+
+[[bin]]
+name = "cat"
+path = "src/cat/bin/cat.rs"
